@@ -6,7 +6,7 @@
 .title {
   font-size: 48px;
   font-weight: 600;
-  color: #383c43;
+  color: var(--grey-darkest);
   margin: 0 0 16px 0;
   text-align: center;
 }
@@ -14,7 +14,7 @@
 .description {
   font-size: 16px;
   font-weight: 400;
-  color: #383c43;
+  color: var(--grey-darkest);
   margin: 0 0 32px 0;
   text-align: center;
 }
@@ -46,7 +46,7 @@
   left: 20px;
   right: 20px;
   height: 1px;
-  background-color: #e8e8e9;
+  background-color: var(--grey-lighter);
 }
 
 .headerCell {
@@ -54,7 +54,7 @@
   text-align: left;
   font-size: 16px;
   font-weight: 500;
-  color: #383c43;
+  color: var(--grey-darkest);
   position: relative;
 }
 
@@ -68,7 +68,7 @@
 }
 
 .sortable:hover {
-  background-color: #e9ecef;
+  background-color: var(--hover-grey);
 }
 
 .sortIcon {
@@ -89,11 +89,11 @@
   left: 20px;
   right: 20px;
   height: 1px;
-  background-color: #e8e8e9;
+  background-color: var(--grey-lighter);
 }
 
 .tableRow:hover {
-  background-color: #f8f9fa;
+  background-color: var(--background-lightest);
 }
 
 .tableRow:last-child {
@@ -131,14 +131,14 @@
 .countryName {
   font-size: 16px;
   font-weight: 500;
-  color: #383c43;
+  color: var(--grey-darkest);
 }
 
 .distance {
   text-align: right;
   font-size: 16px;
   font-weight: 500;
-  color: #383c43;
+  color: var(--grey-darkest);
 }
 
 @media (max-width: 768px) {

@@ -5,10 +5,11 @@ import Header from './components/Header';
 import ServerList from './components/ServerList';
 import { TokenService } from './utils/tokenService';
 import { ApiService } from './utils/apiService';
+import type { Server } from './types/server';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null); // null = loading
-  const [servers, setServers] = useState<any[]>([]);
+  const [servers, setServers] = useState<Server[]>([]);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -18,8 +19,14 @@ function App() {
       }
 
       try {
-        const serverData = await ApiService.getServers();
-        setServers(serverData);
+        const serverData: Server[] = await ApiService.getServers();
+
+        const uniqueServers = serverData.filter(
+          (server: Server, index: number, self: Server[]) =>
+            index === self.findIndex((s: Server) => s.name === server.name)
+        );
+
+        setServers(uniqueServers);
         setIsAuthenticated(true);
       } catch (error) {
         if (error instanceof Error && error.message === 'Unauthorized') {

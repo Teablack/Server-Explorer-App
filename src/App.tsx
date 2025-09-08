@@ -60,14 +60,17 @@ function App() {
 
   return (
     <div className="app-container">
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
       <Header
         onLogout={() => {
           setIsAuthenticated(false);
         }}
       />
-      <div className="main-content">
+      <main className="main-content" id="main-content">
         <ServerList servers={servers} />
-      </div>
+      </main>
     </div>
   );
 }

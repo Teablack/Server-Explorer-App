@@ -13,7 +13,7 @@ function Header({ onLogout }: HeaderProps) {
   };
 
   return (
-    <header className={styles.header}>
+    <header className={styles.header} role="banner">
       <div className={styles.logo}>
         <img
           src={developerSvg}
@@ -21,7 +21,11 @@ function Header({ onLogout }: HeaderProps) {
           className={styles.logoImage}
         />
       </div>
-      <button onClick={handleLogout} className={styles.logoutButton}>
+      <button 
+        onClick={handleLogout} 
+        className={styles.logoutButton}
+        aria-label="Log out of your account"
+      >
         Log out
       </button>
     </header>

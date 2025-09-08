@@ -41,10 +41,13 @@ const FormField = ({
           onClearError();
         }
       }}
+      aria-invalid={hasError}
+      aria-describedby={hasError ? `${id}-error` : undefined}
+      required
     />
     {hasError && (
-      <div className={styles.fieldError}>
-        <span className={styles.fieldErrorIcon}>⚠</span>
+      <div className={styles.fieldError} id={`${id}-error`} role="alert">
+        <span className={styles.fieldErrorIcon} aria-hidden="true">⚠</span>
         This field is required
       </div>
     )}
@@ -116,13 +119,27 @@ function LoginPage({ onLoginSuccess }: LoginPageProps) {
           </div>
         ) : (
           <>
-            <h1 className={styles.welcomeTitle}>Welcome back!</h1>
-            <p className={styles.welcomeSubtitle}>
+            <h1 className={styles.welcomeTitle} id="welcome-title">Welcome back!</h1>
+            <p className={styles.welcomeSubtitle} id="welcome-subtitle">
               Enter details below to log in to your account.
             </p>
 
-            <form className={styles.loginForm} onSubmit={(e) => { void handleSubmit(e); }} noValidate>
-              {error && <div className={styles.errorMessage}>{error}</div>}
+            <form 
+              className={styles.loginForm} 
+              onSubmit={(e) => { void handleSubmit(e); }} 
+              noValidate
+              aria-labelledby="welcome-title"
+              aria-describedby="welcome-subtitle"
+            >
+              {error && (
+                <div 
+                  className={styles.errorMessage} 
+                  role="alert" 
+                  aria-live="polite"
+                >
+                  {error}
+                </div>
+              )}
 
               <FormField
                 id="username"

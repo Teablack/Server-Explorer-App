@@ -13,6 +13,8 @@ function ServerList({ servers }: ServerListProps) {
     sortedItems: sortedServers,
     handleSort,
     getSortIcon,
+    sortField,
+    sortDirection,
   } = useTableSort(servers);
 
   return (
@@ -22,8 +24,16 @@ function ServerList({ servers }: ServerListProps) {
         The distance between you and the server
       </p>
 
+      <div className="sr-only" aria-live="polite" aria-atomic="true">
+        {`Table sorted by ${sortField === 'name' ? 'country name' : 'distance'} in ${sortDirection === 'asc' ? 'ascending' : 'descending'} order`}
+      </div>
+
       <div className={styles.tableContainer}>
-        <table className={styles.table}>
+        <table
+          className={styles.table}
+          role="table"
+          aria-label="Server list with country names and distances"
+        >
           <TableHeader onSort={handleSort} getSortIcon={getSortIcon} />
           <tbody>
             {sortedServers.map((server) => (

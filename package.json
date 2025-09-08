@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "lint:watch": "eslint --watch src --ext .ts,.tsx",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -25,6 +26,8 @@
     "prettier": "^3.6.2",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.39.1",
-    "vite": "^7.1.2"
+    "vite": "^7.1.2",
+    "vite-plugin-checker": "^0.10.3",
+    "vite-plugin-eslint": "^1.8.1"
   }
 }

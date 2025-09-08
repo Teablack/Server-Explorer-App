@@ -2,7 +2,7 @@ import { useState } from 'react';
 import developerSvg from '../assets/developer.svg';
 import { TokenService } from '../utils/tokenService';
 import { ApiService } from '../utils/apiService';
-import './LoginPage.css';
+import styles from './LoginPage.module.css';
 
 interface FormFieldProps {
   id: string;
@@ -25,14 +25,14 @@ const FormField = ({
   onChange,
   onClearError,
 }: FormFieldProps) => (
-  <div className="form-group">
-    <label htmlFor={id} className="form-label">
+  <div className={styles.formGroup}>
+    <label htmlFor={id} className={styles.formLabel}>
       {label}
     </label>
     <input
       type={type}
       id={id}
-      className={`form-input ${hasError ? 'form-input-error' : ''}`}
+      className={`${styles.formInput} ${hasError ? styles.formInputError : ''}`}
       placeholder={placeholder}
       value={value}
       onChange={(e) => {
@@ -43,8 +43,8 @@ const FormField = ({
       }}
     />
     {hasError && (
-      <div className="field-error">
-        <span className="field-error-icon">⚠</span>
+      <div className={styles.fieldError}>
+        <span className={styles.fieldErrorIcon}>⚠</span>
         This field is required
       </div>
     )}
@@ -104,25 +104,25 @@ function LoginPage({ onLoginSuccess }: LoginPageProps) {
 
   return (
     <div className="container">
-      <div className="login-card">
-        <div className="logo-container">
-          <img src={developerSvg} alt="Developer icon" className="logo" />
+      <div className={styles.loginCard}>
+        <div className={styles.logoContainer}>
+          <img src={developerSvg} alt="Developer icon" className={styles.logo} />
         </div>
 
         {isLoading ? (
-          <div className="loader-content">
-            <div className="loader-spinner"></div>
-            <p className="loader-text">Logging in</p>
+          <div className={styles.loaderContent}>
+            <div className={styles.loaderSpinner}></div>
+            <p className={styles.loaderText}>Logging in</p>
           </div>
         ) : (
           <>
-            <h1 className="welcome-title">Welcome back!</h1>
-            <p className="welcome-subtitle">
+            <h1 className={styles.welcomeTitle}>Welcome back!</h1>
+            <p className={styles.welcomeSubtitle}>
               Enter details below to log in to your account.
             </p>
 
-            <form className="login-form" onSubmit={handleSubmit} noValidate>
-              {error && <div className="error-message">{error}</div>}
+            <form className={styles.loginForm} onSubmit={handleSubmit} noValidate>
+              {error && <div className={styles.errorMessage}>{error}</div>}
 
               <FormField
                 id="username"
@@ -150,7 +150,7 @@ function LoginPage({ onLoginSuccess }: LoginPageProps) {
                 }
               />
 
-              <button type="submit" className="login-button">
+              <button type="submit" className={styles.loginButton}>
                 Log in
               </button>
             </form>

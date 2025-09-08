@@ -19,8 +19,7 @@ function App() {
       }
 
       try {
-        const serverResponse = await ApiService.getServers();
-        const serverData: Server[] = serverResponse.servers;
+        const serverData: Server[] = await ApiService.getServers();
 
         const uniqueServers = serverData.filter(
           (server: Server, index: number, self: Server[]) =>
@@ -50,12 +49,22 @@ function App() {
   }
 
   if (!isAuthenticated) {
-    return <LoginPage onLoginSuccess={() => { window.location.reload(); }} />;
+    return (
+      <LoginPage
+        onLoginSuccess={() => {
+          window.location.reload();
+        }}
+      />
+    );
   }
 
   return (
     <div className="app-container">
-      <Header onLogout={() => { setIsAuthenticated(false); }} />
+      <Header
+        onLogout={() => {
+          setIsAuthenticated(false);
+        }}
+      />
       <div className="main-content">
         <ServerList servers={servers} />
       </div>

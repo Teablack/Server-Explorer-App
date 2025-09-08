@@ -9,7 +9,11 @@ interface ServerListProps {
 }
 
 function ServerList({ servers }: ServerListProps) {
-  const { sortedItems: sortedServers, handleSort, getSortIcon } = useTableSort(servers);
+  const {
+    sortedItems: sortedServers,
+    handleSort,
+    getSortIcon,
+  } = useTableSort(servers);
 
   return (
     <div className={styles.container}>

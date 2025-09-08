@@ -1,0 +1,44 @@
+.header {
+  height: 74px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 140px;
+  background: #ffffff;
+  box-shadow:
+    0px 8px 14px 0px #15182326,
+    0px 0px 0px 0px #15182312,
+    0px 15px 20px 0px #15182300;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logoImage {
+  height: 32px;
+  width: auto;
+}
+
+.logoutButton {
+  background: none;
+  border: 1px solid #c8c9cb;
+  border-radius: 999px;
+  color: #3c3d44;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 16px;
+}
+
+.logoutButton:hover {
+  color: #374151;
+  border-color: #9ca3af;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 20px 24px;
+  }
+}

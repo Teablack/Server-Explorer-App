@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import LoginPage from "./components/LoginPage";
-import LoadingSpinner from "./components/LoadingSpinner";
-import Header from "./components/Header";
-import ServerList from "./components/ServerList";
+import LoginPage from './components/LoginPage';
+import LoadingSpinner from './components/LoadingSpinner';
+import Header from './components/Header';
+import ServerList from './components/ServerList';
 import { TokenService } from './utils/tokenService';
 import { ApiService } from './utils/apiService';
 
@@ -34,7 +34,11 @@ function App() {
   }, []);
 
   if (isAuthenticated === null) {
-    return <LoadingSpinner />;
+    return (
+      <div className="container">
+        <LoadingSpinner />
+      </div>
+    );
   }
 
   if (!isAuthenticated) {
@@ -42,9 +46,11 @@ function App() {
   }
 
   return (
-    <div>
+    <div className="app-container">
       <Header onLogout={() => setIsAuthenticated(false)} />
-      <ServerList servers={servers} />
+      <div className="main-content">
+        <ServerList servers={servers} />
+      </div>
     </div>
   );
 }

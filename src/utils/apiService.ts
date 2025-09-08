@@ -1,9 +1,10 @@
 import { TokenService } from './tokenService';
+import type { ServerListResponse, LoginResponse } from '../types/api';
 
-const baseUrl = import.meta.env.VITE_API_URL;
+const baseUrl = import.meta.env.VITE_API_URL as string;
 
-export class ApiService {
-  static async getServers(): Promise<any> {
+export const ApiService = {
+  async getServers(): Promise<ServerListResponse> {
     const headers = {
       'Content-Type': 'application/json',
       ...TokenService.getAuthHeader(),
@@ -22,10 +23,10 @@ export class ApiService {
       throw new Error(`Failed to fetch servers: ${response.statusText}`);
     }
 
-    return await response.json();
-  }
+    return await response.json() as ServerListResponse;
+  },
 
-  static async login(username: string, password: string): Promise<string> {
+  async login(username: string, password: string): Promise<string> {
     const response = await fetch(`${baseUrl}/v1/tokens`, {
       method: 'POST',
       headers: {
@@ -42,7 +43,7 @@ export class ApiService {
       throw new Error(`Login failed: ${response.statusText}`);
     }
 
-    const data = await response.json();
+    const data = await response.json() as LoginResponse;
     
     if (!data.token) {
       throw new Error('No token received from server');
@@ -50,4 +51,4 @@ export class ApiService {
 
     return data.token;
   }
-}
+};

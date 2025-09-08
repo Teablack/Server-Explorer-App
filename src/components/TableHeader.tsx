@@ -12,14 +12,14 @@ export function TableHeader({ onSort, getSortIcon }: TableHeaderProps) {
       <tr>
         <th
           className={`${styles.headerCell} ${styles.sortable}`}
-          onClick={() => onSort('name')}
+          onClick={() => { onSort('name'); }}
         >
           Country name
           <span className={styles.sortIcon}>{getSortIcon('name')}</span>
         </th>
         <th
           className={`${styles.headerCell} ${styles.sortable}`}
-          onClick={() => onSort('distance')}
+          onClick={() => { onSort('distance'); }}
         >
           Distance
           <span className={styles.sortIcon}>{getSortIcon('distance')}</span>

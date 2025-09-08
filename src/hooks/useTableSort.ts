@@ -31,7 +31,7 @@ export function useTableSort<T extends SortableItem>(
 
       if (sortField === 'name') {
         comparison = a.name.localeCompare(b.name);
-      } else if (sortField === 'distance') {
+      } else {
         comparison = a.distance - b.distance;
       }
 

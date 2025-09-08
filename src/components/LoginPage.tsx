@@ -121,7 +121,7 @@ function LoginPage({ onLoginSuccess }: LoginPageProps) {
               Enter details below to log in to your account.
             </p>
 
-            <form className={styles.loginForm} onSubmit={handleSubmit} noValidate>
+            <form className={styles.loginForm} onSubmit={(e) => { void handleSubmit(e); }} noValidate>
               {error && <div className={styles.errorMessage}>{error}</div>}
 
               <FormField
@@ -132,9 +132,9 @@ function LoginPage({ onLoginSuccess }: LoginPageProps) {
                 value={username}
                 hasError={fieldErrors.username}
                 onChange={setUsername}
-                onClearError={() =>
-                  setFieldErrors((prev) => ({ ...prev, username: false }))
-                }
+                onClearError={() => {
+                  setFieldErrors((prev) => ({ ...prev, username: false }));
+                }}
               />
 
               <FormField
@@ -145,9 +145,9 @@ function LoginPage({ onLoginSuccess }: LoginPageProps) {
                 value={password}
                 hasError={fieldErrors.password}
                 onChange={setPassword}
-                onClearError={() =>
-                  setFieldErrors((prev) => ({ ...prev, password: false }))
-                }
+                onClearError={() => {
+                  setFieldErrors((prev) => ({ ...prev, password: false }));
+                }}
               />
 
               <button type="submit" className={styles.loginButton}>

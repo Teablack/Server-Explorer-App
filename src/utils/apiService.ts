@@ -2,7 +2,7 @@ import { TokenService } from './tokenService';
 import type { LoginResponse } from '../types/api';
 import type { Server } from '../types/server';
 
-const baseUrl = import.meta.env.VITE_API_URL as string;
+const baseUrl = import.meta.env.VITE_API_URL;
 
 export const ApiService = {
   async getServers(): Promise<Server[]> {

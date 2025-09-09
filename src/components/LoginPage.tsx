@@ -47,7 +47,9 @@ const FormField = ({
     />
     {hasError && (
       <div className={styles.fieldError} id={`${id}-error`} role="alert">
-        <span className={styles.fieldErrorIcon} aria-hidden="true">⚠</span>
+        <span className={styles.fieldErrorIcon} aria-hidden="true">
+          ⚠
+        </span>
         This field is required
       </div>
     )}
@@ -55,7 +57,7 @@ const FormField = ({
 );
 
 interface LoginPageProps {
-  onLoginSuccess?: () => void;
+  onLoginSuccess?: () => void | Promise<void>;
 }
 
 function LoginPage({ onLoginSuccess }: LoginPageProps) {
@@ -94,7 +96,7 @@ function LoginPage({ onLoginSuccess }: LoginPageProps) {
 
       TokenService.setToken(token);
       if (onLoginSuccess) {
-        onLoginSuccess();
+        await onLoginSuccess();
       }
     } catch (err) {
       setError(
@@ -109,12 +111,16 @@ function LoginPage({ onLoginSuccess }: LoginPageProps) {
     <div className="container">
       <div className={styles.loginCard}>
         <div className={styles.logoContainer}>
-          <img src={developerSvg} alt="Developer icon" className={styles.logo} />
+          <img
+            src={developerSvg}
+            alt="Developer icon"
+            className={styles.logo}
+          />
         </div>
 
         {isLoading ? (
           <div className={styles.loaderContent}>
-            <div 
+            <div
               className={styles.loaderSpinner}
               role="progressbar"
               aria-label="Login in progress"
@@ -123,22 +129,26 @@ function LoginPage({ onLoginSuccess }: LoginPageProps) {
           </div>
         ) : (
           <>
-            <h1 className={styles.welcomeTitle} id="welcome-title">Welcome back!</h1>
+            <h1 className={styles.welcomeTitle} id="welcome-title">
+              Welcome back!
+            </h1>
             <p className={styles.welcomeSubtitle} id="welcome-subtitle">
               Enter details below to log in to your account.
             </p>
 
-            <form 
-              className={styles.loginForm} 
-              onSubmit={(e) => { void handleSubmit(e); }} 
+            <form
+              className={styles.loginForm}
+              onSubmit={(e) => {
+                void handleSubmit(e);
+              }}
               noValidate
               aria-labelledby="welcome-title"
               aria-describedby="welcome-subtitle"
             >
               {error && (
-                <div 
-                  className={styles.errorMessage} 
-                  role="alert" 
+                <div
+                  className={styles.errorMessage}
+                  role="alert"
                   aria-live="polite"
                 >
                   {error}

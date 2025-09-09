@@ -114,7 +114,11 @@ function LoginPage({ onLoginSuccess }: LoginPageProps) {
 
         {isLoading ? (
           <div className={styles.loaderContent}>
-            <div className={styles.loaderSpinner}></div>
+            <div 
+              className={styles.loaderSpinner}
+              role="progressbar"
+              aria-label="Login in progress"
+            ></div>
             <p className={styles.loaderText}>Logging in</p>
           </div>
         ) : (

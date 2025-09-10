@@ -14,6 +14,13 @@ function App() {
   const fetchServersAndAuthenticate = async () => {
     try {
       const serverData: Server[] = await ApiService.getServers();
+
+      if (serverData.length === 0) {
+        setServers([]);
+        setIsAuthenticated(true);
+        return;
+      }
+
       const uniqueServers = serverData.filter(
         (server: Server, index: number, self: Server[]) =>
           index === self.findIndex((s: Server) => s.name === server.name)
@@ -24,6 +31,7 @@ function App() {
       if (error instanceof Error && error.message === 'Unauthorized') {
         setIsAuthenticated(false);
       } else {
+        setServers([]);
         setIsAuthenticated(true);
       }
     }

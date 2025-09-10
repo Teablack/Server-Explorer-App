@@ -8,7 +8,7 @@
     "build": "tsc --noEmit && vite build",
     "lint": "eslint .",
     "lint:watch": "eslint --watch src --ext .ts,.tsx",
-    "preview": "vite preview",
+    "preview": "vite preview --mode production",
     "test": "vitest"
   },
   "dependencies": {

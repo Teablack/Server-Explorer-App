@@ -11,9 +11,6 @@ export default defineConfig(({ mode }) => ({
     mode !== 'test' &&
       checker({
         typescript: true,
-        overlay: {
-          initialIsOpen: false,
-        },
         eslint: {
           useFlatConfig: true,
           lintCommand: 'eslint src',
@@ -23,4 +20,8 @@ export default defineConfig(({ mode }) => ({
         },
       }),
   ].filter(Boolean),
+
+  build: {
+    sourcemap: true,
+  },
 }));

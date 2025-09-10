@@ -14,7 +14,8 @@ export function useTableSort<T extends SortableItem>(
   initialDirection: SortDirection = 'desc'
 ) {
   const [sortField, setSortField] = useState<SortField>(initialField);
-  const [sortDirection, setSortDirection] = useState<SortDirection>(initialDirection);
+  const [sortDirection, setSortDirection] =
+    useState<SortDirection>(initialDirection);
 
   const handleSort = (field: SortField) => {
     if (sortField === field) {
@@ -30,7 +31,31 @@ export function useTableSort<T extends SortableItem>(
       let comparison = 0;
 
       if (sortField === 'name') {
-        comparison = a.name.localeCompare(b.name);
+        const parseServerName = (name: string) => {
+          const regex = /^(.+?)\s*#(\d+)$/;
+          const match = regex.exec(name);
+          if (match) {
+            return {
+              country: match[1].trim(),
+              number: parseInt(match[2], 10),
+            };
+          }
+          return {
+            country: name.trim(),
+            number: 0,
+          };
+        };
+
+        const serverA = parseServerName(a.name);
+        const serverB = parseServerName(b.name);
+
+        if (serverA.country < serverB.country) {
+          comparison = -1;
+        } else if (serverA.country > serverB.country) {
+          comparison = 1;
+        } else {
+          comparison = serverA.number - serverB.number;
+        }
       } else {
         comparison = a.distance - b.distance;
       }

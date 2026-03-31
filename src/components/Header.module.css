@@ -1,4 +1,8 @@
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 74px;
   display: flex;
   justify-content: space-between;
@@ -9,6 +13,7 @@
     0px 8px 14px 0px #15182326,
     0px 0px 0px 0px #15182312,
     0px 15px 20px 0px #15182300;
+  z-index: 1000;
 }
 
 .logo {
